@@ -40,7 +40,7 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
 
 1. Clona este repositorio:
 
-   git clone https://github.com/tu-usuario/recipe-explorer.git
+   git clone https://github.com/camila0424/meal-app-react-native.git
    cd recipe-explorer
 
    npm install
