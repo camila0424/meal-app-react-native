@@ -4,7 +4,7 @@ Aplicación multiplataforma (React Native + Web) para explorar recetas de comida
 
 ---
 
-## 📱 Descripción
+## Descripción
 
 Recipe Explorer es una app que consume la API pública de [TheMealDB](https://www.themealdb.com/api.php) para mostrar recetas de diferentes categorías. Permite filtrar las recetas, navegar a detalle de cada una y visualizar un contador de visitas por receta.
 
@@ -12,7 +12,7 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
 
 ---
 
-## ✨ Características principales
+## Características principales
 
 - Listado dinámico de recetas con imágenes, nombre, región y breve descripción.
 - Filtro por categorías: Beef, Chicken, Dessert, Vegetarian, y opción "Todas".
@@ -24,7 +24,7 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
 
 ---
 
-## 🛠 Tecnologías usadas
+## Tecnologías usadas
 
 - React Native (Expo)
 - React Navigation (stack navigator)
@@ -36,7 +36,7 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
 
 ---
 
-## 🚀 Instalación y ejecución
+## Instalación y ejecución
 
 1. Clona este repositorio:
 
@@ -48,10 +48,7 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
 2. Instala dependencias:
    npm install
 
-   # o con yarn
-
-   yarn
-
+ 
 3. Ejecuta la app:
    - En móvil con Expo Go:
      npm start
@@ -59,7 +56,7 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
    - En web:
      npm run web
 
-## 🧱 Estructura del proyecto
+## Estructura del proyecto
 
     /components
 
@@ -71,7 +68,7 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
 - visitTracker.js # Lógica para contar visitas locales
   App.js # Entry point con navegación
 
-## 📐 Diseño y Responsividad
+##  Diseño y Responsividad
 
 - Uso de useWindowDimensions para detectar tamaño de pantalla.
 
@@ -81,7 +78,7 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
 
 - Animaciones en las tarjetas para una experiencia suave.
 
-## 🔧 Personalización
+## Personalización
 
 - Puedes cambiar categorías, estilos y endpoints API modificando los componentes principales:
 
@@ -91,15 +88,15 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
 
 - Ajusta la cantidad de columnas modificando el breakpoint y los estilos en Main.jsx.
 
-## 🤝 Contribuciones
+##  Contribuciones
 
 ¡Bienvenidas! Si quieres aportar mejoras o reportar problemas, abre un issue o un pull request.
 
-## 📄 Licencia
+## Licencia
 
 MIT License © 2025 Camila Bedoya
 
-## 📫 Contacto
+##  Contacto
 
 Camila Bedoya
 GitHub: https://github.com/camila0424
