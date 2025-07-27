@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   View,
   StyleSheet,
@@ -6,12 +6,15 @@ import {
   Image,
   Animated,
   Pressable,
+  useWindowDimensions,
 } from "react-native";
 import { incrementVisitCount } from "../lib/visitTracker";
 import { useNavigation } from "@react-navigation/native";
 
 export function MealCard({ meal, score }) {
   const navigation = useNavigation();
+  const { width } = useWindowDimensions();
+  const isLargeScreen = width >= 768; // puedes ajustar este valor
 
   useEffect(() => {
     if (meal?.idMeal) {
@@ -19,18 +22,47 @@ export function MealCard({ meal, score }) {
     }
   }, [meal?.idMeal]);
 
+  const dynamicStyles = {
+    image: {
+      width: "100%",
+      height: isLargeScreen ? 250 : 180,
+      borderRadius: 10,
+      marginBottom: 10,
+    },
+    title: {
+      fontSize: isLargeScreen ? 24 : 20,
+    },
+    area: {
+      fontSize: isLargeScreen ? 18 : 16,
+    },
+    instructions: {
+      fontSize: isLargeScreen ? 18 : 16,
+    },
+    counter: {
+      fontSize: isLargeScreen ? 18 : 16,
+    },
+    card: {
+      paddingHorizontal: isLargeScreen ? 32 : 16,
+    },
+  };
+
   return (
     <Pressable
       onPress={() => navigation.navigate("MealDetail", { meal })}
-      style={styles.card}
+      style={[styles.card, dynamicStyles.card]}
     >
-      <Image source={{ uri: meal.strMealThumb }} style={styles.image} />
-      <Text style={styles.title}>{meal.strMeal}</Text>
-      <Text style={styles.area}>{meal.strArea}</Text>
-      <Text style={styles.instructions} numberOfLines={5}>
+      <Image source={{ uri: meal.strMealThumb }} style={dynamicStyles.image} />
+      <Text style={[styles.title, dynamicStyles.title]}>{meal.strMeal}</Text>
+      <Text style={[styles.area, dynamicStyles.area]}>{meal.strArea}</Text>
+      <Text
+        style={[styles.instructions, dynamicStyles.instructions]}
+        numberOfLines={5}
+      >
         {meal.strInstructions}
       </Text>
-      <Text style={styles.counter}>Views: {score}</Text>
+      <Text style={[styles.counter, dynamicStyles.counter]}>
+        Views: {score}
+      </Text>
     </Pressable>
   );
 }
@@ -57,7 +89,6 @@ export function AnimatedMealCard({ meal, score, index }) {
 const styles = StyleSheet.create({
   card: {
     marginBottom: 55,
-    paddingHorizontal: 16,
     backgroundColor: "#F0BF7C",
     borderRadius: 12,
     shadowColor: "#000",
@@ -65,31 +96,21 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 5 },
   },
-  image: {
-    width: "100%",
-    height: 200,
-    borderRadius: 10,
-    marginBottom: 10,
-  },
   title: {
-    fontSize: 20,
     fontWeight: "bold",
     marginBottom: 5,
     color: "brown",
     textAlign: "center",
   },
   area: {
-    fontSize: 16,
-    marginBottom: 5,
     color: "#F07114",
+    marginBottom: 5,
   },
   instructions: {
-    fontSize: 16,
     color: "brown",
     marginTop: 8,
   },
   counter: {
-    fontSize: 16,
     color: "#F07114",
     marginTop: 5,
     fontWeight: "bold",

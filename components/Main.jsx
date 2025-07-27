@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
-  FlatList,
   View,
-  ActivityIndicator,
-  StyleSheet,
   Text,
+  StyleSheet,
+  ActivityIndicator,
+  ScrollView,
+  useWindowDimensions,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getVisitCount } from "../lib/visitTracker";
@@ -17,8 +18,10 @@ export function Main() {
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(true);
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
 
-  // Cargar comidas según categoría
+  const isLargeScreen = width > 768; //A partir de aquí se aplican 3 columnas-----
+
   useEffect(() => {
     const fetchMeals = async () => {
       setLoading(true);
@@ -29,18 +32,27 @@ export function Main() {
       try {
         const res = await fetch(url);
         const data = await res.json();
-        const mealsArray = data.meals || [];
+        const basicMeals = data.meals || [];
 
-        // Obtener visitas de cada receta
+        const fullMeals = await Promise.all(
+          basicMeals.map(async (meal) => {
+            const detailRes = await fetch(
+              `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`
+            );
+            const detailData = await detailRes.json();
+            return detailData.meals[0];
+          })
+        );
+
         const visitsObj = {};
         await Promise.all(
-          mealsArray.map(async (meal) => {
+          fullMeals.map(async (meal) => {
             const count = await getVisitCount(meal.idMeal);
             visitsObj[meal.idMeal] = count;
           })
         );
 
-        setMeals(mealsArray);
+        setMeals(fullMeals);
         setVisits(visitsObj);
       } catch (error) {
         console.error("Error fetching meals:", error);
@@ -73,14 +85,23 @@ export function Main() {
       ) : meals.length === 0 ? (
         <Text style={styles.empty}>No meals found.</Text>
       ) : (
-        <FlatList
-          data={meals}
-          keyExtractor={(meal) => meal.idMeal}
-          contentContainerStyle={{ paddingBottom: 30, paddingHorizontal: 16 }}
-          renderItem={({ item }) => (
-            <MealCard meal={item} score={visits[item.idMeal] || 0} />
-          )}
-        />
+        <ScrollView
+          contentContainerStyle={{
+            paddingBottom: 40,
+            paddingHorizontal: 16,
+          }}
+        >
+          <View style={[styles.grid, isLargeScreen && styles.gridLarge]}>
+            {meals.map((item) => (
+              <View
+                key={item.idMeal}
+                style={[styles.cardWrapper, isLargeScreen && styles.cardLarge]}
+              >
+                <MealCard meal={item} score={visits[item.idMeal] || 0} />
+              </View>
+            ))}
+          </View>
+        </ScrollView>
       )}
     </View>
   );
@@ -92,5 +113,22 @@ const styles = StyleSheet.create({
     color: "brown",
     fontSize: 18,
     marginTop: 40,
+  },
+  grid: {
+    flexDirection: "column",
+    gap: 16,
+  },
+  gridLarge: {
+    flexDirection: "row", // activa el layout horizontal---------
+    flexWrap: "wrap", // permite múltiples filas-----------
+    justifyContent: "space-between",
+    gap: 16,
+  },
+  cardWrapper: {
+    marginBottom: 24,
+  },
+  cardLarge: {
+    width: "31%", //  fuerza 3 columnas (3 * 31% + espacio)-------------
+    minWidth: 220,
   },
 });
