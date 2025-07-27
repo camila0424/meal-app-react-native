@@ -4,6 +4,12 @@ Aplicación multiplataforma (React Native + Web) para explorar recetas de comida
 
 ---
 
+## Demo mobile
+
+¡Así funciona la app! 👇
+
+![Demo de la app](./assets/demo/demo-mobile-gif.gif)
+
 ## 📱 Descripción
 
 Recipe Explorer es una app que consume la API pública de [TheMealDB](https://www.themealdb.com/api.php) para mostrar recetas de diferentes categorías. Permite filtrar las recetas, navegar a detalle de cada una y visualizar un contador de visitas por receta.
@@ -80,6 +86,8 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
 - Componente filtro centrado y adaptable con padding y ancho máximo.
 
 - Animaciones en las tarjetas para una experiencia suave.
+
+![Demo en la web](./assets/demo/demo-desktop-gif.gif)
 
 ## 🔧 Personalización
 
