@@ -3,6 +3,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StyleSheet, Image } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { Platform } from "react-native";
 
 import { Main } from "./components/Main";
 import { MealDetail } from "./components/MealDetail";
@@ -19,7 +20,7 @@ export default function App() {
             contentStyle: { backgroundColor: "#F0BF7C" },
             headerStyle: {
               backgroundColor: "#F0BF7C",
-              height: 100,
+              height: 80,
               elevation: 0, // Android
               shadowOpacity: 0, // iOS
               borderBottomWidth: 0, // iOS y Android
@@ -38,10 +39,10 @@ export default function App() {
                 <Image
                   source={require("./assets/logo.png")}
                   style={{
-                    width: 100,
-                    height: 100,
-                    borderRadius: 50,
-                    marginTop: 40,
+                    width: 80,
+                    height: 80,
+                    borderRadius: 40,
+                    marginTop: Platform.OS === "web" ? 10 : 0, // Aplica margen solo en web
                   }}
                   resizeMode="cover"
                 />
