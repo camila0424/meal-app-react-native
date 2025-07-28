@@ -38,9 +38,9 @@ export default function App() {
                 <Image
                   source={require("./assets/logo.png")}
                   style={{
-                    width: Platform.OS === "web" ? 120 : 90, // Logo más grande
-                    height: Platform.OS === "web" ? 120 : 90,
-                    borderRadius: Platform.OS === "web" ? 60 : 45,
+                    width: Platform.OS === "web" ? 120 : 80, // Logo más grande
+                    height: Platform.OS === "web" ? 120 : 80,
+                    borderRadius: Platform.OS === "web" ? 60 : 40,
                     marginTop: Platform.OS === "web" ? 10 : -5, // Menos margen negativo
                   }}
                   resizeMode="cover"
