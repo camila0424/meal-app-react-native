@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "meal-app",
   "version": "1.0.0",
   "main": "index.js",
@@ -23,15 +24,20 @@
     "react-native-picker-select": "^9.3.1",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
-    "react-native-web": "^0.20.0",
-    "react-native-svg": "15.11.2"
+    "react-native-svg": "15.11.2",
+    "react-native-web": "^0.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "eslint": "^9.0.0",
-    "eslint-config-expo": "~9.2.0",
+    "@eslint/js": "^9.32.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
+    "eslint-config-expo": "^9.2.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.3",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.3.0",
     "prettier": "^3.6.2"
   },
   "private": true

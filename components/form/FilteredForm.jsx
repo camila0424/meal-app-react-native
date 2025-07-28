@@ -65,7 +65,7 @@ export function FilteredForm({ onCategoryChange }) {
             inputIOS: {
               fontSize: isLargeScreen ? 20 : 16,
               color: "brown",
-              paddingVertical: 0, // para evitar altura extra
+              paddingVertical: 0,
               paddingHorizontal: 0,
             },
             inputAndroid: {
@@ -73,6 +73,16 @@ export function FilteredForm({ onCategoryChange }) {
               color: "brown",
               paddingVertical: 0,
               paddingHorizontal: 0,
+            },
+            inputWeb: {
+              // 👈 Estilo específico para Web
+              fontSize: isLargeScreen ? 20 : 16,
+              color: "brown",
+              outline: "none", // Elimina el borde gris al hacer focus
+              paddingVertical: 0,
+              paddingHorizontal: 0,
+              borderWidth: 0, // Elimina el borde por defecto
+              backgroundColor: "transparent", // Fondo transparente
             },
             placeholder: {
               fontSize: isLargeScreen ? 20 : 16,
@@ -83,7 +93,7 @@ export function FilteredForm({ onCategoryChange }) {
               right: 10,
             },
           }}
-          useNativeAndroidPickerStyle={false} // para que tome estilos personalizados en Android
+          useNativeAndroidPickerStyle={false}
         />
       </View>
     </View>

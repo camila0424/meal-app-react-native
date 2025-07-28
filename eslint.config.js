@@ -1,13 +1,30 @@
-// https://docs.expo.dev/guides/using-eslint/
-const { defineConfig } = require("eslint/config");
-const expoConfig = require("eslint-config-expo/flat");
+// eslint.config.js
+import js from "@eslint/js";
+import globals from "globals";
+import reactRecommended from "eslint-plugin-react/configs/recommended.js";
 
-module.exports = defineConfig([
-  expoConfig,
+export default [
+  js.configs.recommended,
+  reactRecommended,
   {
-    ignores: ["dist/*"],
-    extends: ["expo", "prettier"],
-    plugins: ["prettier"],
-    rules: { "prettier/prettier": "error" },
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    ignores: ["**/node_modules/**"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    rules: {
+      semi: ["error", "always"],
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+    },
   },
-]);
+];
