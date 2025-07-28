@@ -8,7 +8,7 @@ Aplicación multiplataforma (React Native + Web) para explorar recetas de comida
 
 ¡Así funciona la app! 👇
 
-![Demo de la app mobile](./assets/demo/demo-mobile-gif.gif)
+![Demo de la app mobile](./assets/demo/demo-mobile.gif)
 
 ## Descripción
 
@@ -83,7 +83,7 @@ La app está desarrollada con React Native y funciona tanto en móviles (iOS/And
 
 - Animaciones en las tarjetas para una experiencia suave.
 
-![Demo en la web](./assets/demo/demo-desktop-gif.gif)
+![Demo en la web](./assets/demo/demo-desktop.gif)
 
 ## Personalización
 
