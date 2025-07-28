@@ -29,10 +29,10 @@ export function FilteredForm({ onCategoryChange }) {
       style={[
         styles.container,
         {
-          paddingTop: isLargeScreen ? 20 : 4,
-          paddingBottom: isLargeScreen ? 20 : 4,
+          paddingTop: isLargeScreen ? 8 : 0, // Reducido aún más
+          paddingBottom: isLargeScreen ? 10 : 5,
           paddingHorizontal: isLargeScreen ? 30 : 10,
-          marginTop: Platform.OS === "web" ? 20 : 0,
+          marginTop: Platform.OS === "web" ? 5 : -15, // Más negativo en móvil
         },
       ]}
     >
@@ -46,7 +46,7 @@ export function FilteredForm({ onCategoryChange }) {
           borderWidth: 1,
           borderRadius: 20,
           width: isLargeScreen ? 800 : 250,
-          height: isLargeScreen ? 50 : 38,
+          height: isLargeScreen ? 45 : 40,
           justifyContent: "center",
           paddingHorizontal: 10,
         }}
@@ -75,22 +75,23 @@ export function FilteredForm({ onCategoryChange }) {
               paddingHorizontal: 0,
             },
             inputWeb: {
-              // 👈 Estilo específico para Web
               fontSize: isLargeScreen ? 20 : 16,
               color: "brown",
-              outline: "none", // Elimina el borde gris al hacer focus
+              outline: "none",
               paddingVertical: 0,
               paddingHorizontal: 0,
-              borderWidth: 0, // Elimina el borde por defecto
-              backgroundColor: "transparent", // Fondo transparente
+              borderWidth: 0,
+              backgroundColor: "transparent",
             },
             placeholder: {
               fontSize: isLargeScreen ? 20 : 16,
               color: "brown",
             },
             iconContainer: {
-              top: isLargeScreen ? 15 : 12,
+              top: isLargeScreen ? 12 : 10,
               right: 10,
+              height: "100%",
+              justifyContent: "center",
             },
           }}
           useNativeAndroidPickerStyle={false}
@@ -107,6 +108,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     borderRadius: 12,
+    marginBottom: Platform.OS === "web" ? 5 : 3,
   },
   label: {
     color: "brown",

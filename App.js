@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { StyleSheet, Image } from "react-native";
+import { Image } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { Platform } from "react-native";
@@ -20,12 +20,12 @@ export default function App() {
             contentStyle: { backgroundColor: "#F0BF7C" },
             headerStyle: {
               backgroundColor: "#F0BF7C",
-              height: 80,
-              elevation: 0, // Android
-              shadowOpacity: 0, // iOS
-              borderBottomWidth: 0, // iOS y Android
+              height: Platform.OS === "web" ? 140 : 100,
+              elevation: 0,
+              shadowOpacity: 0,
+              borderBottomWidth: 0,
             },
-            headerShadowVisible: false, // iOS y Android (desde React Navigation 6)
+            headerShadowVisible: false,
             headerTitleAlign: "center",
             headerTintColor: "brown",
           }}
@@ -34,19 +34,21 @@ export default function App() {
             name="Main"
             component={Main}
             options={{
-              // Logo como título
               headerTitle: () => (
                 <Image
                   source={require("./assets/logo.png")}
                   style={{
-                    width: 80,
-                    height: 80,
-                    borderRadius: 40,
-                    marginTop: Platform.OS === "web" ? 10 : 0, // Aplica margen solo en web
+                    width: Platform.OS === "web" ? 120 : 90, // Logo más grande
+                    height: Platform.OS === "web" ? 120 : 90,
+                    borderRadius: Platform.OS === "web" ? 60 : 45,
+                    marginTop: Platform.OS === "web" ? 10 : -5, // Menos margen negativo
                   }}
                   resizeMode="cover"
                 />
               ),
+              headerTitleContainerStyle: {
+                paddingBottom: Platform.OS === "web" ? 15 : 8,
+              },
             }}
           />
           <Stack.Screen
